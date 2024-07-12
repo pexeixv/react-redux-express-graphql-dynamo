@@ -59,13 +59,13 @@ app.get("/api/messages", async (req, res) => {
 });
 
 app.post("/api/messages", async (req, res) => {
-  const { content } = req.body;
+  const { content, id } = req.body;
 
   try {
     const result = await client.mutate({
       mutation: CREATE_MESSAGE,
       variables: {
-        createEnvistaMessagesInput: { content },
+        createEnvistaMessagesInput: { id, content },
       },
     });
     console.log(result.data.createEnvistaMessages);

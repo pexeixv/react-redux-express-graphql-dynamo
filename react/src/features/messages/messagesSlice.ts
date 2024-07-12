@@ -4,6 +4,7 @@ import {
   createSlice,
   createAsyncThunk,
   type PayloadAction,
+  nanoid,
 } from "@reduxjs/toolkit"
 import axios from "axios"
 import { type RootState } from "../../app/store"
@@ -32,6 +33,7 @@ export const addMessage = createAsyncThunk(
   "messages/addMessage",
   async (message: string) => {
     const response = await axios.post("http://localhost:4000/api/messages", {
+      id: nanoid(),
       content: message,
     })
     return response.data
